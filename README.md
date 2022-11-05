@@ -37,3 +37,6 @@
 
 <hr>
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+need install nvm for switchking versions of node.js
+https://github.com/coreybutler/nvm-windows
