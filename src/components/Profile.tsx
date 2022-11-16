@@ -3,9 +3,10 @@ import React from 'react';
 export const Profile = () => {
     return (
         <div className='content'>
-            <div>ava+descriptions
+            <div>
                 <img className="ava" alt='avatar'
                      src="https://abrakadabra.fun/uploads/posts/2022-01/1642131987_41-abrakadabra-fun-p-tyanka-na-prozrachnom-fone-48.jpg"/>
+                <p>ava+descriptions</p>
             </div>
             <div>My posts</div>
             <div>New post</div>
