@@ -4,11 +4,16 @@ import style from "./Navbar.module.css";
 export const Navbar = () => {
     return (
         <nav className={style.navBar}>
-            <div className={style.item}>Profile</div>
-            <div className={style.item}>Messages</div>
-            <div className={style.item}>News</div>
-            <div className={style.item}>Music</div>
-            <div className={style.item}>Settings</div>
+            <div className={style.item}>
+                <a href={'/profile'}>Profile</a></div>
+            <div className={style.item}>
+                <a href={'/messages'}>Messages</a></div>
+            <div className={style.item}>
+                <a>News</a></div>
+            <div className={style.item}>
+                <a>Music</a></div>
+            <div className={style.item}>
+                <a>Settings</a></div>
         </nav>
 
     );
