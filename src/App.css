@@ -7,26 +7,3 @@
           "h h"
           "n c";
 }
-
-.header {
-  grid-area: h;
-  background-color: #3f4257;
-}
-
-.header img {
-  height: 50px;
-}
-
-.navBar {
-  grid-area: n;
-  background-color: #b5d2c3;
-}
-
-.content {
-  grid-area: c;
-  background-color: #dec6a9;
-}
-
-.ava {
-  width: 70px;
-}
