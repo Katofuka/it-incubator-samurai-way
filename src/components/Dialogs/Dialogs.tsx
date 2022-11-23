@@ -8,10 +8,10 @@ type DialogItemType = {
     avatar?: string,
 }
 
-type dialogsDataType = {
-    id: number
-    name: string
-}
+// type dialogsDataType = {
+//     id: number
+//     name: string
+// }
 
 const DialogItem = (props: DialogItemType) => {
     const linkToDialog = '/dialogs/' + props.id;
