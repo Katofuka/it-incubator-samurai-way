@@ -8,6 +8,11 @@ type DialogItemType = {
     avatar?: string,
 }
 
+type dialogsDataType = {
+    id: number
+    name: string
+}
+
 const DialogItem = (props: DialogItemType) => {
     const linkToDialog = '/dialogs/' + props.id;
     return (
@@ -29,20 +34,32 @@ const Message = (props: MessageType) => {
     )
 }
 
-
 export const Dialogs = () => {
+    let dialogsData = [
+        {id: 1, name: 'Semen'},
+        {id: 2, name: 'Sasha'},
+        {id: 3, name: 'Ksenia'},
+        {id: 4, name: 'Alesha'},
+    ]
+
+    let messagesData = [
+        {id: 1, message: 'Эй алё чё такой вася'},
+        {id: 2, message: 'Дароу! кадила?'},
+        {id: 3, message: 'Сегодня не оч'},
+        {id: 4, message: 'Люблю тортики'},
+    ]
     return (
         <div className={style.dialogs}>
             <div className={style.dialogsItems}>
-                <DialogItem name={'Semen'} id={1}/>
-                <DialogItem name={'Sasha'} id={2}/>
-                <DialogItem name={'Ksenia'} id={3}/>
-                <DialogItem name={'Alesha'} id={4}/>
+                <DialogItem name={dialogsData[0].name} id={dialogsData[0].id}/>
+                <DialogItem name={dialogsData[1].name} id={dialogsData[1].id}/>
+                <DialogItem name={dialogsData[2].name} id={dialogsData[2].id}/>
+                <DialogItem name={dialogsData[3].name} id={dialogsData[3].id}/>
             </div>
             <div className={style.messages}>
-                <Message message={'Hi'}/>
-                <Message message={'my'}/>
-                <Message message={'friend'}/>
+                <Message message={messagesData[0].message}/>
+                <Message message={messagesData[2].message}/>
+                <Message message={messagesData[1].message}/>
             </div>
 
         </div>
