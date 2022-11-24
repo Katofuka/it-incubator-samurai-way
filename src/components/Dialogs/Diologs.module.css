@@ -6,22 +6,23 @@
 
 .dialogsItems {
     padding: 10px;
-    text-decoration: none;
+
 }
 
 .dialogsItems .active {
     color: #3f4257;
-
 }
 
-.dialog {
-
+.dialogs .dialog {
+    color: #3f4257;
+    text-decoration: none;
 }
 
 .messages {
     padding: 10px;
 }
 
-.message {
+.messages .message {
+    color: saddlebrown;
 
 }
