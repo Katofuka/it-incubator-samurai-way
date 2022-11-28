@@ -7,23 +7,19 @@ export type dialogType = {
     id: number
     name: string
 }
-let dialogsData: dialogType[] = [
+const dialogsData: dialogType[] = [
     {id: 1, name: 'Semen'},
     {id: 2, name: 'Sasha'},
     {id: 3, name: 'Ksenia'},
     {id: 4, name: 'Alesha'},
 ]
 
-type messageType = {
+export type messageType = {
     id: number
     message: string
 }
-export type dialogsType = {
-    dialogs: dialogType[],
-    messages: messageType[]
-}
 
-let messagesData: messageType[] = [
+const messagesData: messageType[] = [
     {id: 1, message: 'Эй алё чё такой вася'},
     {id: 2, message: 'Дароу! кадила?'},
     {id: 3, message: 'Сегодня не оч'},
@@ -36,13 +32,13 @@ export type postType = {
     likesCount: number
 }
 
-let postsData: postType[] = [
+const postsData: postType[] = [
     {id: 1, post: 'Hello! my name is Anne. And you?', likesCount: 2},
     {id: 2, post: 'it`s my first post', likesCount: 42},
 ]
 
 
 ReactDOM.render(
-    <App postsData={postsData} messagesData={messagesData}/>,
+    <App postsData={postsData} messagesData={messagesData} dialogsData={dialogsData}/>,
   document.getElementById('root')
 );

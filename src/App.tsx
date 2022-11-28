@@ -5,14 +5,20 @@ import {Profile} from "./components/Profile/Profile";
 import {Header} from "./components/Header/Header";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {dialogsType, postsType} from "./index";
+import {dialogType, postType, messageType} from "./index";
 
 type appType = {
-    postsData: postsType
-    dialogsData: dialogsType
+    postsData: postType[]
+    dialogsData: dialogType[]
+    messagesData: messageType[]
 }
 
 function App(props: appType) {
+    const {
+        postsData,
+        messagesData,
+        dialogsData
+    } = props
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -22,12 +28,12 @@ function App(props: appType) {
 
                     <Route path='/profile' render={() => {
                         return (
-                            <Profile postsData={props.postsData}/>
+                            <Profile postsData={postsData}/>
                         )
                     }}/>
                     <Route path='/dialogs' render={() => {
                         return (
-                            <Dialogs dialogs={props.dialogsData.dialogs} messages={props.dialogsData.messages}/>
+                            <Dialogs dialogsData={dialogsData} messagesData={messagesData}/>
                         )
                     }
                     }/>
