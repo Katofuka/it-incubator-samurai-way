@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './Diolog.module.css'
+import style from './DiologItem.module.css'
 import {NavLink} from "react-router-dom";
 
 type DialogItemType = {

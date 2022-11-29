@@ -5,20 +5,19 @@ import {Profile} from "./components/Profile/Profile";
 import {Header} from "./components/Header/Header";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {dialogType, postType, messageType} from "./index";
+import {stateType} from "./Redux/state";
 
-type appType = {
-    postsData: postType[]
-    dialogsData: dialogType[]
-    messagesData: messageType[]
+type appStateType = {
+    appState: stateType
 }
 
-function App(props: appType) {
+function App(props: appStateType) {
+
     const {
         postsData,
         messagesData,
         dialogsData
-    } = props
+    } = props.appState
     return (
         <BrowserRouter>
             <div className="app-wrapper">
