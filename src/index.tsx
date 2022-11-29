@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import {state} from "./Redux/state";
 
-
 ReactDOM.render(
     <App appState={state}/>,
   document.getElementById('root')

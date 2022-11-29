@@ -12,12 +12,6 @@ type appStateType = {
 }
 
 function App(props: appStateType) {
-
-    const {
-        postsData,
-        messagesData,
-        dialogsData
-    } = props.appState
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -27,12 +21,12 @@ function App(props: appStateType) {
 
                     <Route path='/profile' render={() => {
                         return (
-                            <Profile postsData={postsData}/>
+                            <Profile state={props.appState.profilePage}/>
                         )
                     }}/>
                     <Route path='/dialogs' render={() => {
                         return (
-                            <Dialogs dialogsData={dialogsData} messagesData={messagesData}/>
+                            <Dialogs state={props.appState.dialogPage}/>
                         )
                     }
                     }/>
