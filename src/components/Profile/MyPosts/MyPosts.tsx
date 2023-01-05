@@ -11,6 +11,12 @@ export const MyPosts = (props: myPostsType) => {
     const postsData = props.postsData
     let postsElements = postsData.map(p => <Post message={p.post} likesCount={p.likesCount}/>)
 
+    let newPostElement = React.createRef<HTMLTextAreaElement>()
+
+    let addPost = () => {
+        let  textPost = newPostElement.current?.value
+        console.log(textPost)
+    }
     return (
         <div className={style.postBlock}>
             <div>
@@ -19,10 +25,10 @@ export const MyPosts = (props: myPostsType) => {
                 </h3>
                 <div>
                     <div>
-                        <textarea></textarea>
+                        <textarea ref={newPostElement}></textarea>
                     </div>
                     <div>
-                        <button>Add post</button>
+                        <button onClick={addPost}>Add post</button>
                     </div>
                 </div>
                 <div className={style.posts}>
