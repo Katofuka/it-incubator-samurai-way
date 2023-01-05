@@ -8,7 +8,8 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {stateType} from "./Redux/state";
 
 type appStateType = {
-    appState: stateType
+    appState: stateType,
+    addPost: (text:string)=>void
 }
 
 function App(props: appStateType) {
@@ -21,7 +22,7 @@ function App(props: appStateType) {
 
                     <Route path='/profile' render={() => {
                         return (
-                            <Profile state={props.appState.profilePage}/>
+                            <Profile state={props.appState.profilePage} addPost={props.addPost}/>
                         )
                     }}/>
                     <Route path='/dialogs' render={() => {

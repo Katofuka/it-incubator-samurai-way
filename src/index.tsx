@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {state} from "./Redux/state";
+import {addPost, state} from "./Redux/state";
 
 ReactDOM.render(
-    <App appState={state}/>,
+    <App appState={state} addPost={addPost}/>,
   document.getElementById('root')
 );

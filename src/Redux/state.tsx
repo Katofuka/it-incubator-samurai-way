@@ -27,6 +27,16 @@ export type stateType = {
     profilePage: profilePageType,
 }
 
+
+export let addPost = (postMessage:string ) => {
+    let newPost:postType = {
+        id: 5,
+        post: postMessage,
+        likesCount: 0
+    }
+    state.profilePage.postsData.push(newPost)
+}
+
 export const state: stateType = {
     dialogPage: {
         messagesData: [
