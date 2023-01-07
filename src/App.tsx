@@ -5,14 +5,16 @@ import {Profile} from "./components/Profile/Profile";
 import {Header} from "./components/Header/Header";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {stateType} from "./Redux/state";
+import {StateType, StoreType} from "./Redux/state";
 
-type appStateType = {
-    appState: stateType,
-    addPost: (text:string)=>void
+
+type AppStateType = {
+    store: StoreType,
 }
 
-function App(props: appStateType) {
+const App: React.FC<AppStateType>  = (props) => {
+    const state: StateType = props.store.getState()
+    console.log(state)
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -22,12 +24,19 @@ function App(props: appStateType) {
 
                     <Route path='/profile' render={() => {
                         return (
-                            <Profile state={props.appState.profilePage} addPost={props.addPost}/>
+                            <Profile profilePage={state.profilePage}
+                                     addPost={props.store.addPost.bind(props.store)}
+                                     changePostText={props.store.changePostText.bind(props.store)}
+                            />
                         )
                     }}/>
                     <Route path='/dialogs' render={() => {
                         return (
-                            <Dialogs state={props.appState.dialogPage}/>
+                            <Dialogs
+                                dialogPage={state.dialogPage}
+                                addMessage={props.store.addMessage.bind(props.store)}
+                                changeMessageText={props.store.changeMessageText.bind(props.store)}
+                            />
                         )
                     }
                     }/>
