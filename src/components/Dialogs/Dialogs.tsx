@@ -2,12 +2,16 @@ import React, { ChangeEvent } from 'react';
 import style from './Diologs.module.css'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from "./Message/Message";
-import {DialogPageType} from '../../Redux/state';
+import {
+    ActionType,
+    addMessageActionCreator,
+    changeMessageActionCreator,
+    DialogPageType
+} from '../../Redux/state';
 
 type dialogsType = {
     dialogPage: DialogPageType
-    changeMessageText: (text: string) => void
-    addMessage: () => void
+    dispatch: (action: ActionType) => void
 }
 
 export const Dialogs = (props: dialogsType) => {
@@ -21,12 +25,13 @@ export const Dialogs = (props: dialogsType) => {
     let messages = messagesData.map(m => <Message message={m.message}/>)
 
     const addMessage = () => {
-        props.addMessage()
+        props.dispatch(addMessageActionCreator())
         //props.changeMessageText('')
     }
 
     const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.changeMessageText(e.currentTarget.value)
+        props.dispatch(changeMessageActionCreator(e.currentTarget.value))
+        //props.changeMessageText(e.currentTarget.value)
     }
 
 
