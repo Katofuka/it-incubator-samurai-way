@@ -1,13 +1,11 @@
-import React, { ChangeEvent } from 'react';
+import React, {ChangeEvent} from 'react';
 import style from './Diologs.module.css'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from "./Message/Message";
 import {
     ActionType,
-    addMessageActionCreator,
-    changeMessageActionCreator,
-    DialogPageType
 } from '../../Redux/state';
+import {addMessageActionCreator, changeMessageActionCreator, DialogPageType} from "../../Redux/dialog-reducer";
 
 type dialogsType = {
     dialogPage: DialogPageType
@@ -34,7 +32,6 @@ export const Dialogs = (props: dialogsType) => {
         //props.changeMessageText(e.currentTarget.value)
     }
 
-
     return (
         <div className={style.dialogs}>
             <div className={style.dialogsItems}>
@@ -45,7 +42,8 @@ export const Dialogs = (props: dialogsType) => {
             </div>
             <div>
                 <div>
-                    <textarea onChange={onMessageChange}
+                    <textarea placeholder={"add message text..."}
+                              onChange={onMessageChange}
                               value={newMessageText}
                     />
                 </div>

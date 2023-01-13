@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import style from "./MyPosts.module.css";
 import {Post} from "./Post/Post";
-import {ActionType, addPostActionCreator, changePostActionCreator, PostType} from "../../../Redux/state";
+import {ActionType} from "../../../Redux/state";
+import {addPostActionCreator, changePostActionCreator, PostType} from "../../../Redux/profile-reducer";
 
 type MyPostsPropsType = {
     postsData: PostType[]
@@ -31,7 +32,8 @@ export const MyPosts = (props: MyPostsPropsType) => {
                 </h3>
                 <div>
                     <div>
-                        <textarea onChange={onPostChange}
+                        <textarea placeholder={"add post text..."}
+                            onChange={onPostChange}
                                   value={props.newPostText}/>
                     </div>
                     <div>
