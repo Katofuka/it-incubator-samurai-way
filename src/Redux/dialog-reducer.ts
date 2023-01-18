@@ -1,6 +1,6 @@
 import {
     ActionType,
-} from "./state";
+} from "./store";
 
 export type DialogType = {
     id: number
@@ -24,8 +24,23 @@ const CHANGE_MESSAGE_TEXT = 'CHANGE-MESSAGE-TEXT';
 export type AddMessageActionType = ReturnType<typeof addMessageActionCreator>
 export type ChangeMessageActionType = ReturnType<typeof changeMessageActionCreator>
 
+const  initialState:DialogPageType = {
+    messagesData: [
+        {id: 1, message: 'Эй алё чё такой вася'},
+        {id: 2, message: 'Дароу! кадила?'},
+        {id: 3, message: 'Сегодня не оч'},
+        {id: 4, message: 'Люблю тортики'},
+    ],
+    dialogsData: [
+        {id: 1, name: 'Semen'},
+        {id: 2, name: 'Sasha'},
+        {id: 3, name: 'Ksenia'},
+        {id: 4, name: 'Alesha'},
+    ],
+    newMessageText: ""
+}
 
-export const dialogReducer = (state: DialogPageType, action: ActionType) => {
+export const dialogReducer = (state: DialogPageType = initialState, action: ActionType) => {
 
     switch (action.type) {
         case ADD_MESSAGE:

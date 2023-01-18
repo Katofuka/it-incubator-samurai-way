@@ -7,7 +7,6 @@ export type StateType = {
     profilePage: ProfilePageType,
     sidebar: object
 }
-export type ActionType = AddPostActionType | ChangePostActionType | AddMessageActionType | ChangeMessageActionType
 
 export type StoreType = {
     _state: StateType,
@@ -16,6 +15,8 @@ export type StoreType = {
     subscribe: (observer: () => void) => void,
     dispatch: (action: ActionType) => void,
 }
+
+export type ActionType = AddPostActionType | ChangePostActionType | AddMessageActionType | ChangeMessageActionType
 
 export const store: StoreType = {
     _state: {

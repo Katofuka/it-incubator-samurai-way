@@ -3,32 +3,36 @@ import style from './Diologs.module.css'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from "./Message/Message";
 import {
-    ActionType,
-} from '../../Redux/state';
-import {addMessageActionCreator, changeMessageActionCreator, DialogPageType} from "../../Redux/dialog-reducer";
+    DialogType,
+    MessagesType
+} from "../../Redux/dialog-reducer";
 
-type dialogsType = {
-    dialogPage: DialogPageType
-    dispatch: (action: ActionType) => void
+type DialogPropsType ={
+    messagesData: MessagesType[],
+    dialogsData: DialogType[]
+    newMessageText: string,
+    addMessage: ()=> void
+    messageChangeText: (text: string)=> void
 }
 
-export const Dialogs = (props: dialogsType) => {
+export const Dialogs = (props: DialogPropsType) => {
     const {
         dialogsData,
         messagesData,
         newMessageText,
-    } = props.dialogPage
+        addMessage,
+        messageChangeText,
+    } = props
 
-    let dialogsElements = dialogsData.map(d => <DialogItem name={d.name} id={d.id}/>)
-    let messages = messagesData.map(m => <Message message={m.message}/>)
+    let dialogsElements = dialogsData.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>)
+    let messages = messagesData.map(m => <Message key={m.id} message={m.message}/>)
 
-    const addMessage = () => {
-        props.dispatch(addMessageActionCreator())
-        //props.changeMessageText('')
+    const onAddMessage = () => {
+       addMessage()
     }
 
     const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(changeMessageActionCreator(e.currentTarget.value))
+        messageChangeText(e.currentTarget.value)
         //props.changeMessageText(e.currentTarget.value)
     }
 
@@ -48,7 +52,7 @@ export const Dialogs = (props: dialogsType) => {
                     />
                 </div>
                 <div>
-                    <button onClick={addMessage}>Add message</button>
+                    <button onClick={onAddMessage}>Add message</button>
                 </div>
             </div>
 
