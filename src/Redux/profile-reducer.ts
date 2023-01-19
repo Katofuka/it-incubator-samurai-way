@@ -1,13 +1,11 @@
-import {ActionType} from "./store";
+import {AddMessageActionType, ChangeMessageActionType} from "./dialog-reducer";
 
+type ActionType = AddPostActionType | ChangePostActionType | AddMessageActionType | ChangeMessageActionType
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_POST_TEXT = 'CHANGE-POST-TEXT';
 
-export type ProfilePageType = {
-    postsData: PostType[],
-    newPostText: string
-}
+export type InitialProfileStateType = typeof initialState
 
 export type PostType = {
     id: number
@@ -17,12 +15,19 @@ export type PostType = {
 
 export type AddPostActionType = ReturnType<typeof addPostActionCreator>
 export type ChangePostActionType = ReturnType<typeof changePostActionCreator>
-const initialState: ProfilePageType = {
-    postsData: [{id: 1, post: 'Hello! my name is Anne. And you?', likesCount: 2},
-        {id: 2, post: 'it`s my first post', likesCount: 42},],
+
+
+const initialState = {
+    postsData: [
+        {id: 1, post: 'Hello! my name is Anne. And you?', likesCount: 2},
+        {id: 2, post: 'it`s my first post', likesCount: 42},
+    ] as Array<PostType>,
     newPostText: ""
 }
-export const profileReducer = (state: ProfilePageType = initialState,  action: ActionType)  => {
+
+
+
+export const profileReducer = (state: InitialProfileStateType = initialState, action: ActionType): InitialProfileStateType  => {
     switch (action.type) {
         case ADD_POST:
             let newPost: PostType = {
@@ -32,10 +37,10 @@ export const profileReducer = (state: ProfilePageType = initialState,  action: A
             }
             state.postsData.push(newPost)
             state.newPostText = ''
-            return state
+            return {...state}
         case CHANGE_POST_TEXT:
             state.newPostText = action.newText
-            return state
+            return {...state}
         default:
             return state;
     }

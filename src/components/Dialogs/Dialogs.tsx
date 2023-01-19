@@ -4,13 +4,13 @@ import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from "./Message/Message";
 import {
     DialogType,
-    MessagesType
+    MessageType
 } from "../../Redux/dialog-reducer";
 
 type DialogPropsType ={
-    messagesData: MessagesType[],
     dialogsData: DialogType[]
-    newMessageText: string,
+    messagesData: MessageType[]
+    newMessageText: string
     addMessage: ()=> void
     messageChangeText: (text: string)=> void
 }

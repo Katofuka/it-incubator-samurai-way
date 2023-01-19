@@ -5,9 +5,9 @@ import {PostType} from "../../../Redux/profile-reducer";
 
 type MyPostsPropsType = {
     postsData: PostType[]
+    newPostText: string
     addPost: () => void
     updateNewPostText: (text: string) => void
-    newPostText: string
 }
 
 export const MyPosts = (props: MyPostsPropsType) => {
