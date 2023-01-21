@@ -46,12 +46,10 @@ export const dialogReducer = (state: InitialDialogStateType = initialState, acti
                 id: new Date().getTime(),
                 message: state.newMessageText
             }
-            state.newMessageText = ''
-            state.messagesData.push(newMessage)
-            return {...state};
+            state.newMessageText = '';
+            return {...state,  messagesData: [...state.messagesData, newMessage]};
         case CHANGE_MESSAGE_TEXT:
-            state.newMessageText = action.newText
-            return {...state};
+            return {...state, newMessageText: action.newText};
         default:
             return state;
     }
