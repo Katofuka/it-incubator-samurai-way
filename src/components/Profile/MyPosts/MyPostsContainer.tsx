@@ -25,11 +25,9 @@ const mapStateToProps = (state: AppRootStateType): InitialProfileStateType => {
 const mapDispatchToProps = (dispatch:  Dispatch): mapDispatchToPropsType => {
     return {
         addPost: ()=> {
-            console.log('call dispatch add post')
             dispatch(addPostActionCreator())
         },
         updateNewPostText: (text: string)=> {
-            console.log('update post text' , text)
             dispatch(changePostActionCreator(text))
         },
     }

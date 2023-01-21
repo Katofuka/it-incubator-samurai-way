@@ -1,7 +1,3 @@
-
-import {AddPostActionType, ChangePostActionType} from "./profile-reducer";
-
-type ActionType = AddPostActionType | ChangePostActionType | AddMessageActionType | ChangeMessageActionType
 export type AddMessageActionType = ReturnType<typeof addMessageActionCreator>
 export type ChangeMessageActionType = ReturnType<typeof changeMessageActionCreator>
 
@@ -20,8 +16,6 @@ export type InitialDialogStateType = typeof initialState
 const ADD_MESSAGE = 'ADD-MESSAGE';
 const CHANGE_MESSAGE_TEXT = 'CHANGE-MESSAGE-TEXT';
 
-
-
 const  initialState = {
     messagesData: [
         {id: 1, message: 'Эй алё чё такой вася'},
@@ -38,7 +32,9 @@ const  initialState = {
     newMessageText: ""
 }
 
-export const dialogReducer = (state: InitialDialogStateType = initialState, action: ActionType):InitialDialogStateType => {
+
+export type DialogsActionsType = AddMessageActionType | ChangeMessageActionType
+export const dialogReducer = (state: InitialDialogStateType = initialState, action: DialogsActionsType):InitialDialogStateType => {
 
     switch (action.type) {
         case ADD_MESSAGE:
@@ -46,8 +42,9 @@ export const dialogReducer = (state: InitialDialogStateType = initialState, acti
                 id: new Date().getTime(),
                 message: state.newMessageText
             }
-            state.newMessageText = '';
-            return {...state,  messagesData: [...state.messagesData, newMessage]};
+            return {...state,
+                messagesData: [...state.messagesData, newMessage],
+                newMessageText: ''};
         case CHANGE_MESSAGE_TEXT:
             return {...state, newMessageText: action.newText};
         default:

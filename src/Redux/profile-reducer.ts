@@ -1,7 +1,3 @@
-import {AddMessageActionType, ChangeMessageActionType} from "./dialog-reducer";
-
-type ActionType = AddPostActionType | ChangePostActionType | AddMessageActionType | ChangeMessageActionType
-
 const ADD_POST = 'ADD-POST';
 const CHANGE_POST_TEXT = 'CHANGE-POST-TEXT';
 
@@ -15,7 +11,7 @@ export type PostType = {
 
 export type AddPostActionType = ReturnType<typeof addPostActionCreator>
 export type ChangePostActionType = ReturnType<typeof changePostActionCreator>
-
+export type ProfileActionsType = AddPostActionType | ChangePostActionType
 
 const initialState = {
     postsData: [
@@ -25,9 +21,7 @@ const initialState = {
     newPostText: ""
 }
 
-
-
-export const profileReducer = (state: InitialProfileStateType = initialState, action: ActionType): InitialProfileStateType  => {
+export const profileReducer = (state: InitialProfileStateType = initialState, action: ProfileActionsType): InitialProfileStateType  => {
     switch (action.type) {
         case ADD_POST:
             let newPost: PostType = {
@@ -35,7 +29,7 @@ export const profileReducer = (state: InitialProfileStateType = initialState, ac
                 post: state.newPostText,
                 likesCount: 0
             }
-            return {...state, postsData: [...state.postsData, newPost]}
+            return {...state, postsData: [...state.postsData, newPost], newPostText: ''}
         case CHANGE_POST_TEXT:
             return {...state, newPostText: action.newText}
         default:
