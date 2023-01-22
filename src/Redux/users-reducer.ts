@@ -3,15 +3,15 @@
 // export type ChangeMessageActionType = ReturnType<typeof changeMessageActionCreator>
 
 export type UserType = {
+    name: string
     id: number
-    photo: string
-    fullName: string
-    followed: boolean
-    status: string
-    location: {
-        city: string
-        country: string
+    uniqueUrlName: string
+    photos: {
+        small: string
+        large: string
     }
+    status: string
+    followed: boolean
 }
 export type FollowUserActionType = ReturnType<typeof followActionCreator>
 
@@ -21,7 +21,7 @@ export type SetUsersActionType = ReturnType<typeof setUsersActionCreator>
 
 
 const initialState = {
-    users: [] as UserType[],
+    items: [] as UserType[],
 }
 
 export type InitialUsersStateType = typeof initialState
@@ -39,16 +39,16 @@ export const usersReducer = (state: InitialUsersStateType = initialState, action
             console.log('follow', action.userId)
             return {
                 ...state,
-                users: state.users.map(us => us.id === action.userId ? {...us, followed: false} : us)
+                items: state.items.map(us => us.id === action.userId ? {...us, followed: true} : us)
             }
         case UNFOLLOW:
             console.log('unfollow', action.userId)
             return {
                 ...state,
-                users: state.users.map(us => us.id === action.userId ? {...us, followed: true} : us)
+                items: state.items.map(us => us.id === action.userId ? {...us, followed: false} : us)
             }
         case SETUSERS:
-            return {...state, users: action.users}
+            return {...state, items: action.users}
         default:
             return state;
     }

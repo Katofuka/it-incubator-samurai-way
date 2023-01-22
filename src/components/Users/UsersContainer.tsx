@@ -8,18 +8,17 @@ import {
     setUsersActionCreator,
     unfollowActionCreator, UserType
 } from "../../Redux/users-reducer";
-import {Users} from "./Users";
+import {Users} from "./UsersC";
 
 type mapDispatchToPropsType = {
     followUser: (idUser: number)=> void
     unfollowUser: (idUser: number)=> void
-    setUsers: (users: UserType[])=> void
+    setUsers: (items: UserType[])=> void
 }
 
 const mapStateToProps = (state: AppRootStateType): InitialUsersStateType => {
-
     return {
-        users: state.usersReducer.users,
+        items: state.usersReducer.items,
     }
 }
 const mapDispatchToProps = (dispatch:  Dispatch): mapDispatchToPropsType => {
