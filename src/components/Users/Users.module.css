@@ -8,3 +8,14 @@
 .getUsersButton {
     margin: 10px
 }
+
+.numPage {
+    color: #3f4257;
+    margin: 5px;
+}
+
+.selectedPage {
+    font-weight: bold;
+    color: #b5d2c3;
+}
+
