@@ -6,12 +6,11 @@ import {Header} from "./components/Header/Header";
 import {Route} from 'react-router-dom';
 
 import {DialogContainer} from "./components/Dialogs/DialogsContainer";
-import {UsersContainer} from "./components/Users/UsersContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 
 const App = () => {
     return (
-
         <div className="app-wrapper">
             <Header/>
             <Navbar/>

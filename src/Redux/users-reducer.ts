@@ -28,7 +28,8 @@ const initialState = {
     items: [] as UserType[],
     pageSize: 50,
     totalCount: 1,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 export type InitialUsersStateType = typeof initialState
