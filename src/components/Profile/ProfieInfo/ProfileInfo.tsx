@@ -1,12 +1,21 @@
 import React from 'react';
 import style from "./ProfileInfo.module.css";
+import {UserProfileType} from "../../../Redux/profile-reducer";
+import {Preloader} from "../../Preloader/Preloader";
 
+type ProfileInfoPropsType = {
+    profile: UserProfileType
+}
 
-export const ProfileInfo = () => {
+export const ProfileInfo = (props: ProfileInfoPropsType) => {
+    if(!props.profile) {
+        return <Preloader/>
+    }
+
     return (
         <div>
             <div>
-                <img src="https://play-lh.googleusercontent.com/F4dLhEGbGsTrvZCvoiYObMGzpu2ThQUeQaJ61glTdsZCjsVMwwUoqst0_jmWQErmNC8" alt="myAvatar"/>
+                <img src={props.profile.photos.large} alt="myAvatar"/>
             </div>
             <div className={style.descriptionBlock}>
                 <p>some text about me</p>

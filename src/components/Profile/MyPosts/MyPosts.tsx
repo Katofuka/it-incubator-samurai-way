@@ -7,7 +7,7 @@ type MyPostsPropsType = {
     postsData: PostType[]
     newPostText: string
     addPost: () => void
-    updateNewPostText: (text: string) => void
+    changePost: (text: string) => void
 }
 
 export const MyPosts = (props: MyPostsPropsType) => {
@@ -21,7 +21,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateNewPostText(e.currentTarget.value)
+        props.changePost(e.currentTarget.value)
     }
 
     return (
