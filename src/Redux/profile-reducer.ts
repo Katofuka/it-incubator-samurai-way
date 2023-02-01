@@ -82,7 +82,6 @@ export const profileReducer = (state: InitialProfileStateType = initialState, ac
         case CHANGEPOSTTEXT:
             return {...state, newPostText: action.newText}
         case SETUSERPROFILE:
-            debugger
             return {...state, profile: action.profile}
         default:
             return state;
