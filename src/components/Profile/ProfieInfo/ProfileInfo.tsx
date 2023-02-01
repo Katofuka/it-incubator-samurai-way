@@ -18,7 +18,12 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <img src={props.profile.photos.large} alt="myAvatar"/>
             </div>
             <div className={style.descriptionBlock}>
-                <p>some text about me</p>
+                <div className={style.profileName}>{props.profile.fullName}</div>
+                <div className={style.contactsBlock}>
+                    <a className={style.contact} href={props.profile.contacts.github}>GH</a>
+                    <a className={style.contact} href={props.profile.contacts.vk}>Vk</a>
+                    <a className={style.contact} href={props.profile.contacts.instagram}>I</a>
+                </div>
             </div>
         </div>
     );

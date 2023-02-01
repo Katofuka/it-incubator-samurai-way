@@ -1,3 +1,16 @@
 .descriptionBlock {
     padding: 10px;
 }
+
+.profileName{
+    color: darkslateblue;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.contact {
+    text-decoration: none;
+    margin: 0 10px
+}
+

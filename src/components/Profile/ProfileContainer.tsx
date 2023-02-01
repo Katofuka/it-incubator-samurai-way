@@ -26,7 +26,6 @@ class ProfileContainer extends React.Component<ProfilePropsType, any> {
     componentDidMount() {
         axios.get<InitialProfileStateType>(`https://social-network.samuraijs.com/api/1.0/profile/11`)
             .then(response => {
-                debugger
                 this.props.setUserProfile(response.data)
             })
     }
