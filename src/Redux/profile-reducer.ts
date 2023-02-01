@@ -2,32 +2,35 @@ const ADDPOST = 'ADD-POST';
 const CHANGEPOSTTEXT = 'CHANGE-POST-TEXT';
 const SETUSERPROFILE = 'SET-USER-PROFILE'
 
-export type InitialProfileStateType = typeof initialState
-
-export type PostType = {
+export type InitialProfileStateType =  {
+    postsData: PostsType[],
+    newPostText: string,
+    profile: UserProfileType
+}
+export type PostsType = {
     id: number
     post: string
     likesCount: number
 }
 export type UserProfileType = {
-    aboutMe: string
+    aboutMe: string | undefined
     contacts: {
-        facebook: string
-        website: string
-        vk: string
-        twitter: string
-        instagram: string
-        youtube: string
-        github: string
-        mainLink: string
-    },
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    userId: number
+        facebook: string | undefined
+        website: string | undefined
+        vk: string | undefined
+        twitter: string | undefined
+        instagram: string | undefined
+        youtube: string | undefined
+        github: string | undefined
+        mainLink: string | undefined
+    }
+    lookingForAJob: boolean | undefined
+    lookingForAJobDescription: string | undefined
+    fullName: string | undefined
+    userId: number | undefined
     photos: {
-        small: string
-        large: string
+        small: string | undefined
+        large: string | undefined
     }
 }
 
@@ -39,11 +42,11 @@ export type ProfileActionsType = AddPostActionType
     | ChangePostActionType
     | SetUserProfileActionCreatorType
 
-const initialState = {
+const initialState: InitialProfileStateType  = {
     postsData: [
         {id: 1, post: 'Hello! my name is Anne. And you?', likesCount: 2},
         {id: 2, post: 'it`s my first post', likesCount: 42},
-    ] as Array<PostType>,
+    ] as Array<PostsType>,
     newPostText: "",
     profile: {
         aboutMe: "",
@@ -64,14 +67,13 @@ const initialState = {
         photos: {
             small: "",
             large: "",
-        }
-    }
+        }}
 }
 
 export const profileReducer = (state: InitialProfileStateType = initialState, action: ProfileActionsType): InitialProfileStateType => {
     switch (action.type) {
         case ADDPOST:
-            let newPost: PostType = {
+            let newPost: PostsType = {
                 id: new Date().getTime(),
                 post: state.newPostText,
                 likesCount: 0
@@ -80,6 +82,7 @@ export const profileReducer = (state: InitialProfileStateType = initialState, ac
         case CHANGEPOSTTEXT:
             return {...state, newPostText: action.newText}
         case SETUSERPROFILE:
+            debugger
             return {...state, profile: action.profile}
         default:
             return state;

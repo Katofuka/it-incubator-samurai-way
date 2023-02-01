@@ -8,23 +8,23 @@ type ProfileInfoPropsType = {
 }
 
 export const ProfileInfo = (props: ProfileInfoPropsType) => {
-    if(!props.profile) {
+    if (!props.profile) {
         return <Preloader/>
     }
 
-    return (
+    return <div>
         <div>
-            <div>
-                <img src={props.profile.photos.large} alt="myAvatar"/>
-            </div>
-            <div className={style.descriptionBlock}>
-                <div className={style.profileName}>{props.profile.fullName}</div>
-                <div className={style.contactsBlock}>
-                    <a className={style.contact} href={props.profile.contacts.github}>GH</a>
-                    <a className={style.contact} href={props.profile.contacts.vk}>Vk</a>
-                    <a className={style.contact} href={props.profile.contacts.instagram}>I</a>
-                </div>
+            <img src={props.profile.photos.large} alt="myAvatar"/>
+        </div>
+        <div className={style.descriptionBlock}>
+            <div className={style.profileName}>{props.profile.fullName}</div>
+            <div className={style.contactsBlock}>
+                <a className={style.contact} href={props.profile.contacts.github}>GH</a>
+                <a className={style.contact} href={props.profile.contacts.vk}>Vk</a>
+                <a className={style.contact} href={props.profile.contacts.instagram}>I</a>
             </div>
         </div>
-    );
+    </div>
+
+
 };
