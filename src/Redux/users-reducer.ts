@@ -28,7 +28,7 @@ export type ToggleIsFetchingActionType = ReturnType<typeof toggleIsFetching>
 
 const initialState = {
     items: [] as UserType[],
-    pageSize: 50,
+    pageSize: 25,
     totalCount: 1,
     currentPage: 1,
     isFetching: false,

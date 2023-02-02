@@ -6,3 +6,12 @@
 .header img {
     height: 50px;
 }
+
+.loginBlock {
+    float: right;
+}
+
+.loginLink {
+    text-decoration:none;
+    color: rgba(246, 241, 241);
+}
