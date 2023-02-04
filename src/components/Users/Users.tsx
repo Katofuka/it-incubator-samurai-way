@@ -1,8 +1,9 @@
 import React from 'react'
-import {UserType} from "../../Redux/users-reducer";
+import {toggleFollowingInProgress, UserType} from "../../Redux/users-reducer";
 import styles from './Users.module.css'
 import defaultUserPhoto from "../../common/images/default-avatar.jpg"
 import {NavLink} from "react-router-dom";
+import {usersAPI} from "../../api/api";
 
 
 type UsersPropsType = {
@@ -13,6 +14,7 @@ type UsersPropsType = {
     totalCount: number
     currentPage: number
     onPageChanged: (page: number) => void
+    toggleFollowingInProgress: (isFetching: boolean) => void
 }
 
 export const Users = (props: UsersPropsType) => {
@@ -44,8 +46,29 @@ export const Users = (props: UsersPropsType) => {
                         </NavLink>
                 </div>
                 <div>{user.followed
-                    ? <button onClick={() => props.unfollow(user.id)}>Unfollow</button>
-                    : <button onClick={() => props.follow(user.id)}>Follow</button>}</div>
+                    ? <button onClick={() => {
+                        props.toggleFollowingInProgress(true)
+                        usersAPI.unfollowUser(user.id)
+                            .then(data => {
+                                if(data.resultCode===0) {
+                                    props.unfollow(user.id)
+                                }
+                                props.toggleFollowingInProgress(false)
+                            })
+
+
+                    }}>Unfollow</button>
+                    : <button onClick={() => {
+                        props.toggleFollowingInProgress(true)
+                        usersAPI.followUser(user.id)
+                            .then(data => {
+                                if(data.resultCode===0) {
+                                    props.follow(user.id)
+                                }
+                                props.toggleFollowingInProgress(false)
+                            })
+
+                    }}>Follow</button>}</div>
             </span>
                     <span> <div>{user.name}</div> <div>{user.status}</div> </span>
                     <span> <div>{user.id}</div> <div>{user.id}</div> </span>
