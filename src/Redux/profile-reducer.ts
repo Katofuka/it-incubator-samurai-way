@@ -1,3 +1,6 @@
+import { Dispatch } from "redux";
+import {profileAPI} from "../api/api";
+
 const ADDPOST = 'ADD-POST';
 const CHANGEPOSTTEXT = 'CHANGE-POST-TEXT';
 const SETUSERPROFILE = 'SET-USER-PROFILE'
@@ -36,7 +39,7 @@ export type UserProfileType = {
 
 export type AddPostActionType = ReturnType<typeof addPost>
 export type ChangePostActionType = ReturnType<typeof changePost>
-export type SetUserProfileActionCreatorType = ReturnType<typeof setUserProfile>
+export type SetUserProfileActionCreatorType = ReturnType<typeof setUserProfileActionCreator>
 
 export type ProfileActionsType = AddPostActionType
     | ChangePostActionType
@@ -90,4 +93,13 @@ export const profileReducer = (state: InitialProfileStateType = initialState, ac
 
 export const addPost = () => ({type: ADDPOST} as const)
 export const changePost = (text: string) => ({type: CHANGEPOSTTEXT, newText: text} as const)
-export const setUserProfile = (profile: UserProfileType) => ({type: SETUSERPROFILE, profile} as const)
+export const setUserProfileActionCreator = (profile: UserProfileType) => ({type: SETUSERPROFILE, profile} as const)
+
+export const setUserProfile = (userId:string) => {
+    return (dispatch: Dispatch<ProfileActionsType>) => {
+        profileAPI.getUserProfile(userId)
+            .then(data => {
+                dispatch(setUserProfileActionCreator(data))
+            })
+    }
+}

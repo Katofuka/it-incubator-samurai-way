@@ -2,13 +2,10 @@ import axios from "axios";
 import {InitialUsersStateType} from "../Redux/users-reducer";
 import {UserProfileType} from "../Redux/profile-reducer";
 
-const baseUrl = 'https://social-network.samuraijs.com/api/1.0/'
-
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0',
     withCredentials: true,
 })
-
 
 export const usersAPI = {
     getUsers (pageSize: number = 15, currentPage: number = 1)  {
@@ -26,7 +23,6 @@ export const usersAPI = {
             {}
         ).then(response => response.data)
     },
-
 }
 
 export const profileAPI = {
@@ -34,9 +30,9 @@ export const profileAPI = {
         return instance.get<UserProfileType>(`profile/${userId}`)
             .then(response => response.data)
     },
-    authMe () {
-        return instance.get(`auth/me` )
-            .then(response => response.data)
-    },
+}
+
+export const authAPI = {
+    authMe: () =>  instance.get(`auth/me` ).then(response => response.data),
 }
 

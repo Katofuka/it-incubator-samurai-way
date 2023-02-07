@@ -1,12 +1,15 @@
 .navBar {
     grid-area: n;
-    background-color: #b5d2c3;
+    background-color: rgb(243, 243, 243);
     padding: 20px;
 }
 
 .item a{
-    color: white;
     text-decoration: none;
+}
+
+.item.icon{
+
 }
 
 .item a.activeLink{

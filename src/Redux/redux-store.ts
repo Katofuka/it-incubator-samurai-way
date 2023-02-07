@@ -1,9 +1,10 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import {profileReducer} from "./profile-reducer";
 import {dialogReducer} from "./dialog-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {usersReducer} from "./users-reducer";
 import {authReducer} from "./auth-reducer";
+import thunkMiddleware from "redux-thunk";
 
 const rootReducer = combineReducers({
     profileReducer: profileReducer,
@@ -13,7 +14,10 @@ const rootReducer = combineReducers({
     authReducer: authReducer
 })
 
-export const store = createStore(rootReducer)
+// export type AppDispatch = typeof store.dispatch
+// export const useAppDispatch: () => AppDispatch = useDispatch
+
+export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 // определить автоматически тип всего объекта состояния
 export type AppRootStateType = ReturnType<typeof rootReducer>
 // а это, чтобы можно было в консоли браузера обращаться к store в любой момент

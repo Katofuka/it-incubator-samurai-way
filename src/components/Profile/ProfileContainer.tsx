@@ -5,14 +5,14 @@ import {addPost, changePost, setUserProfile, UserProfileType} from "../../Redux/
 import {AppRootStateType} from "../../Redux/redux-store";
 import {connect} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router-dom";
-import {profileAPI} from "../../api/api";
 
 type PathParamsType = { userId: string }
 type MapStatePropsType = {
     profile: UserProfileType
+    isAuth: boolean
 }
 type MapDispatchPropsType = {
-    setUserProfile: (profile: UserProfileType) => void
+    setUserProfile: (userId:string) => void
 }
 
 type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
@@ -25,10 +25,7 @@ class ProfileContainer extends React.Component<PropsType, any> {
         if (!userId) {
             userId = "2"
         }
-        profileAPI.getUserProfile(userId)
-            .then(data => {
-                this.props.setUserProfile(data)
-            })
+        this.props.setUserProfile(userId)
     }
     render() {
         return (
@@ -41,7 +38,8 @@ class ProfileContainer extends React.Component<PropsType, any> {
 
 const mapStateToProps = (state: AppRootStateType): MapStatePropsType => (
     {
-        profile: state.profileReducer.profile
+        profile: state.profileReducer.profile,
+        isAuth: state.authReducer.isAuth
     }
 )
 

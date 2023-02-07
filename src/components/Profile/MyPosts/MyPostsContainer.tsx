@@ -5,10 +5,6 @@ import {MyPosts} from "./MyPosts";
 
 import {AppRootStateType} from "../../../Redux/redux-store";
 
-// type MapStatePropsType = {
-//     profilePage: InitialStateType
-// }
-
 type mapDispatchToPropsType = {
     addPost: ()=> void
     changePost: (text: string)=> void

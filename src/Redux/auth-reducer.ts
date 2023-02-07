@@ -1,4 +1,7 @@
-export type setUsersDataActionType = ReturnType<typeof setUsersData>
+import {Dispatch} from "redux";
+import {authAPI} from "../api/api";
+
+export type setUsersDataActionType = ReturnType<typeof setUsersDataActionCreator>
 
 export type AuthDataType = {
     id: number
@@ -18,14 +21,11 @@ const initialState: InitialAuthStateType = {
 export type InitialAuthStateType = {
     data: AuthDataType,
     isAuth: boolean
-
 }
-
 
 const SETUSERDATA = 'SET-USER-DATA'
 
 export type AuthActionsType = setUsersDataActionType
-
 
 export const authReducer = (state: InitialAuthStateType = initialState, action: AuthActionsType): InitialAuthStateType => {
     switch (action.type) {
@@ -35,11 +35,21 @@ export const authReducer = (state: InitialAuthStateType = initialState, action: 
                 data: {...action.data},
                 isAuth: true
             }
-
         default:
             return state
     }
 
 }
 
-export const setUsersData = (data: AuthDataType) => ({type: SETUSERDATA, data: data} as const)
+export const setUsersDataActionCreator = (data: AuthDataType) => ({type: SETUSERDATA, data: data} as const)
+
+export const setUserData = () => {
+    return (dispatch: Dispatch<AuthActionsType>) => {
+        authAPI.authMe()
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(setUsersDataActionCreator(data.data))
+                }
+            })
+    }
+}
