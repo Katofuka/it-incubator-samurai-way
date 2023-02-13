@@ -14,3 +14,15 @@
     margin: 0 10px
 }
 
+.profilePhotoBlock {
+    position: relative;
+    text-align: center;
+    top: -35px;
+}
+
+.profilePhotoBlock .profilePhoto {
+
+    border-radius: 50%;
+    border: 1px solid #3f4257;
+
+}

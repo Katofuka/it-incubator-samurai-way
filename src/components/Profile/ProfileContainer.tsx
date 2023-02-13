@@ -5,11 +5,12 @@ import {addPost, changePost, setUserProfile, UserProfileType} from "../../Redux/
 import {AppRootStateType} from "../../Redux/redux-store";
 import {connect} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 type PathParamsType = { userId: string }
 type MapStatePropsType = {
     profile: UserProfileType
-    isAuth: boolean
 }
 type MapDispatchPropsType = {
     setUserProfile: (userId:string) => void
@@ -39,10 +40,14 @@ class ProfileContainer extends React.Component<PropsType, any> {
 const mapStateToProps = (state: AppRootStateType): MapStatePropsType => (
     {
         profile: state.profileReducer.profile,
-        isAuth: state.authReducer.isAuth
     }
 )
 
-const withURLDataContainerComponent = withRouter(ProfileContainer)
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {addPost, changePost, setUserProfile}),
+    withRouter,
+    withAuthRedirect)(ProfileContainer)
 
-export default connect(mapStateToProps, {addPost, changePost, setUserProfile})(withURLDataContainerComponent)
+// const AuthRedirectComponent = withAuthRedirect(ProfileContainer)
+// const withURLDataContainerComponent = withRouter(AuthRedirectComponent)
+// export default connect(mapStateToProps, {addPost, changePost, setUserProfile})(withURLDataContainerComponent)

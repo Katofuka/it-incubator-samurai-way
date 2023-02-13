@@ -38,7 +38,6 @@ export const authReducer = (state: InitialAuthStateType = initialState, action: 
         default:
             return state
     }
-
 }
 
 export const setUsersDataActionCreator = (data: AuthDataType) => ({type: SETUSERDATA, data: data} as const)
