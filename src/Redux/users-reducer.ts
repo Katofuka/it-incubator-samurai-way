@@ -63,30 +63,24 @@ export type UsersActionsType = FollowUserActionType
 export const usersReducer = (state: InitialUsersStateType = initialState, action: UsersActionsType): InitialUsersStateType => {
     switch (action.type) {
         case FOLLOW:
-            console.log('follow', action.userId)
             return {
                 ...state,
                 items: state.items.map(us => us.id === action.userId ? {...us, followed: true} : us)
             }
         case UNFOLLOW:
-            console.log('unFollow', action.userId)
             return {
                 ...state,
                 items: state.items.map(us => us.id === action.userId ? {...us, followed: false} : us)
             }
         case SETUSERS:
-            // debugger
             return {...state, items: action.items}
         case SETCURRENTPAGE:
-            console.log('текущая страница', action.currentPage)
             return {...state, currentPage: action.currentPage}
         case SETTOTALUSERSCOUNT:
-            // debugger
             return {...state, totalCount: action.totalCount}
         case TOGGLEISFETCHING:
             return {...state, isFetching: action.isFetching}
         case TOGGLEFOLLOWINGPROGRESS:
-            debugger
             return {
                 ...state,
                 followingInProgress: action.isFetchingFollow

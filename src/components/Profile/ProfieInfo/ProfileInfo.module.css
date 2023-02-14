@@ -11,7 +11,7 @@
 
 .contact {
     text-decoration: none;
-    margin: 0 10px
+    margin: 0 10px;
 }
 
 .profilePhotoBlock {
@@ -21,8 +21,10 @@
 }
 
 .profilePhotoBlock .profilePhoto {
-
     border-radius: 50%;
     border: 1px solid #3f4257;
+}
 
+.contactsBlock {
+    text-align: right;
 }
