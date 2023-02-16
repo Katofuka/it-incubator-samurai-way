@@ -38,8 +38,8 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => (
     {}
 )
 
-const LoginReduxFrom = reduxForm<FormDataType>({form: 'loginForm'})(Login)
+const LoginReduxFrom = reduxForm<FormDataType>({form: 'loginForm'})(LoginForm)
 //законнектить
 
 
-export const LoginContainer = connect(mapStateToProps, {signIn})(LoginReduxFrom)
+export const LoginContainer = connect(mapStateToProps, {signIn})(Login)
