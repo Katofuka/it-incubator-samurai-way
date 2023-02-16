@@ -1,0 +1,57 @@
+.loginBlock {
+    min-width: 470px;
+    background-color: #fff;
+    padding: 50px 60px;
+    box-shadow: 0 19px 73px 0 rgb(0 0 0 / 17%);
+}
+
+.loginBlock h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.inputForm {
+    margin-bottom: 10px;
+}
+
+
+.loginBlock .inputForm input {
+    border: none;
+    border-radius: 0;
+    padding: 5px 10px;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.loginBlock .checkingBox {
+    margin-top: 35px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.loginBlock .checkingBox input {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+
+.loginBlock .checkingBox label {
+    display: inline-block;
+    position: relative;
+    padding-left: 30px;
+    font-size: 14px;
+    color: #646464;
+    cursor: pointer;
+}
+
+.loginBlock button {
+    padding: 12px 50px;
+}
+
+

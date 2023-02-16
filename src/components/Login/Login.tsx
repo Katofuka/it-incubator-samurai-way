@@ -1,6 +1,7 @@
 import React from 'react'
 import {reduxForm} from 'redux-form';
 import style from './Login.module.css'
+import styleApp from '../../App.module.css'
 import {LoginForm} from "./LoginForm";
 import {connect} from "react-redux";
 import {AppRootStateType} from "../../Redux/redux-store";
@@ -28,7 +29,7 @@ export const Login = (props: AuthPropsType) => {
         //самостоятельно залогиниться
     }
     return (
-        <div className={style.loginBlock}>
+        <div className={`${style.loginBlock} ${styleApp.blockBox}`}>
             <LoginReduxFrom onSubmit={onSubmit}/>
         </div>
     )
