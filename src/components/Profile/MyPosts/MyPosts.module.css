@@ -1,7 +1,31 @@
 .postBlock {
     padding: 10px;
+    display: flex;
 }
 
-.posts{
-    margin-top: 10px;
+.postBlock .addPostBlock {
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 12;
+    padding: 15px 18px;
+}
+
+.postBlock .addPostBlock .inputPostMessage {
+    flex-grow: 11;
+}
+
+.postBlock .addPostBlock .inputPostMessage textarea {
+    height: 50px;
+    width: 100%;
+    padding: 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+}
+
+.postBlock .addPostBlock .buttonAddPost {
+    flex-grow: 1;
+    text-align: right;
 }

@@ -21,6 +21,8 @@
 }
 
 .profilePhotoBlock .profilePhoto {
+    max-width: 200px;
+    max-height: 200px;
     border-radius: 50%;
     border: 1px solid #3f4257;
 }

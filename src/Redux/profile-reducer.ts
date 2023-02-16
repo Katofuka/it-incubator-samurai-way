@@ -4,7 +4,7 @@ import {profileAPI} from "../api/api";
 const ADDPOST = 'ADD-POST';
 const CHANGEPOSTTEXT = 'CHANGE-POST-TEXT';
 const SETUSERPROFILE = 'SET-USER-PROFILE'
-const SETUSERSTATUS = 'GET-USER-STATUS'
+const SETUSERSTATUS = 'SET-USER-STATUS'
 
 export type InitialProfileStateType = {
     postsData: PostsType[],
@@ -53,7 +53,9 @@ export type ProfileActionsType = AddPostActionType
 const initialState: InitialProfileStateType = {
     postsData: [
         {id: 1, post: 'Hello! my name is Anne. And you?', likesCount: 2},
-        {id: 2, post: 'it`s my first post', likesCount: 42},
+        {id: 2, post: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aliquid ' +
+                'et ex excepturi explicabo magnam maxime nobis, nostrum odit officiis optio quibusdam quisquam ' +
+                'tenetur totam vero voluptatem voluptatibus. Totam.', likesCount: 42},
     ] as Array<PostsType>,
     newPostText: "",
     profile: {
@@ -115,21 +117,18 @@ export const setUserProfile = (userId: string) => {
 }
 
 export const getUserStatus = (userId: string) => (dispatch: Dispatch<ProfileActionsType>) => {
-        profileAPI.getUserStatus(userId)
-            .then(status => {
-                dispatch(setUserStatusActionCreator(status))
-            })
-    }
-
-
-export const updateUserStatus = (status: string) => {
-    return (dispatch: Dispatch<ProfileActionsType>) => {
-        console.log('thunk dispatch', status)
-        profileAPI.updateUserStatus(status)
-            .then(data => {
-                console.log('dispatch', status)
-                if (data.resultCode === 0)
-                    dispatch(setUserStatusActionCreator(status))
-            })
-    }
+    profileAPI.getUserStatus(userId)
+        .then(status => {
+            dispatch(setUserStatusActionCreator(status))
+        })
 }
+
+export const updateUserStatus = (status: string) => (dispatch: Dispatch<ProfileActionsType>) => {
+    console.log('dispatch thunk')
+    profileAPI.updateUserStatus(status)
+        .then(data => {
+            if (data.resultCode === 0)
+                dispatch(setUserStatusActionCreator(status))
+        })
+}
+

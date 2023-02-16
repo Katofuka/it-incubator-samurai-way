@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import {Navbar} from "./components/Navbar/Navbar";
 import {Route} from 'react-router-dom';
 
@@ -7,15 +6,16 @@ import {DialogContainer} from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import {Login} from "./components/Login/Login";
+import {LoginContainer} from "./components/Login/Login";
+import style from './App.module.css'
 
 
 const App = () => {
     return (
-        <div className="app-wrapper">
+        <div className={style.appWrapper}>
             <HeaderContainer />
             <Navbar/>
-            <div className='app-wrapper-content'>
+            <div className={style.appWrapperContent}>
 
                 <Route path='/profile/:userId?' render={() => {
                     return (
@@ -34,7 +34,7 @@ const App = () => {
                 }}/>
                 <Route path='/login' render={() => {
                     return (
-                        <Login />
+                        <LoginContainer />
                     )
                 }}/>
 

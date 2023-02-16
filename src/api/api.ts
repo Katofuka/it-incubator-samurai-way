@@ -17,12 +17,12 @@ export type ResponseType<D> = {
 }
 
 export const usersAPI = {
-    getUsers (pageSize: number = 15, currentPage: number = 1)  {
+    getUsers(pageSize: number = 15, currentPage: number = 1) {
         return instance.get<InitialUsersStateType>(`users?count=${pageSize}&page=${currentPage}`,
         )
             .then(response => response.data)
     },
-    unfollowUser (userId: number)  {
+    unfollowUser(userId: number) {
         return instance.delete(`follow/${userId}`,
         )
             .then(response => response.data)
@@ -45,12 +45,21 @@ export const profileAPI = {
     },
     updateUserStatus(status: string) {
         console.log('api', status)
-        return instance.put<ResponseType<{ }>>(`profile/status`, {status: status})
+        return instance.put<ResponseType<{}>>(`profile/status`, {status: status})
             .then(response => response.data)
     }
 }
 
 export const authAPI = {
-    authMe: () =>  instance.get(`auth/me` ).then(response => response.data),
+    authMe: () => instance.get(`auth/me`).then(response => response.data),
+
+    signIn: (email: string, password: string, rememberMe: boolean) =>
+        instance.post<ResponseType<{ userId: number }>>('auth/login', {
+            email: email,
+            password: password,
+            rememberMe: rememberMe,
+            captcha: true
+        })
+            .then(response => response.data)
 }
 

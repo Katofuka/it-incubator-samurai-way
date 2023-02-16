@@ -1,7 +1,9 @@
 import React, {ChangeEvent} from 'react';
 import style from "./MyPosts.module.css";
+import styleApp from'../../../App.module.css'
 import {Post} from "./Post/Post";
 import {PostsType} from "../../../Redux/profile-reducer";
+
 
 type MyPostsPropsType = {
     postsData: PostsType[]
@@ -27,16 +29,13 @@ export const MyPosts = (props: MyPostsPropsType) => {
     return (
         <div className={style.postBlock}>
             <div>
-                <h3>
-                    My posts
-                </h3>
-                <div>
-                    <div>
+                <div className={`${style.addPostBlock} ${styleApp.blockBox}`}>
+                    <div className={style.inputPostMessage}>
                         <textarea placeholder={"add post text..."}
                                   onChange={onPostChange}
                                   value={props.newPostText}/>
                     </div>
-                    <div>
+                    <div className={style.buttonAddPost}>
                         <button onClick={onAddPost}>Add post</button>
                     </div>
                 </div>

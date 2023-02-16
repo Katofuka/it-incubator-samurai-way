@@ -35,15 +35,20 @@ class ProfileContainer extends React.Component<PropsType, any> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = "2"
+            userId = "27415"
         }
         this.props.setUserProfile(userId)
         this.props.getUserStatus(userId)
+
+
     }
     render() {
         return (
             <div className={style.content}>
-                <Profile {...this.props} profile={this.props.profile} updateUserStatus={updateUserStatus}/>
+                <Profile {...this.props}
+                         profile={this.props.profile}
+                         status={this.props.status}
+                         updateUserStatus={this.props.updateUserStatus}/>
             </div>
         )
     }

@@ -6,12 +6,15 @@ import {usersReducer} from "./users-reducer";
 import {authReducer} from "./auth-reducer";
 import thunkMiddleware from "redux-thunk";
 
+import {reducer as formReducer} from 'redux-form'
+
 const rootReducer = combineReducers({
     profileReducer: profileReducer,
     dialogReducer: dialogReducer,
     sidebarReducer: sidebarReducer,
     usersReducer: usersReducer,
-    authReducer: authReducer
+    authReducer: authReducer,
+    form: formReducer,
 })
 
 // export type AppDispatch = typeof store.dispatch

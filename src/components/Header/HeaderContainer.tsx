@@ -35,7 +35,6 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => (
         login: state.authReducer.data.login,
         isAuth: state.authReducer.isAuth,
         meId: state.authReducer.data.id,
-
     }
 )
 

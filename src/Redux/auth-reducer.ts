@@ -1,7 +1,8 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 
-export type setUsersDataActionType = ReturnType<typeof setUsersDataActionCreator>
+export type SetUsersDataActionType = ReturnType<typeof setUsersDataActionCreator>
+export type SignInActionCreatorType = ReturnType<typeof signInActionCreator>
 
 export type AuthDataType = {
     id: number
@@ -24,8 +25,9 @@ export type InitialAuthStateType = {
 }
 
 const SETUSERDATA = 'SET-USER-DATA'
+const SIGNIN = 'SIGN-IN'
 
-export type AuthActionsType = setUsersDataActionType
+export type AuthActionsType = SetUsersDataActionType | SignInActionCreatorType
 
 export const authReducer = (state: InitialAuthStateType = initialState, action: AuthActionsType): InitialAuthStateType => {
     switch (action.type) {
@@ -41,6 +43,7 @@ export const authReducer = (state: InitialAuthStateType = initialState, action: 
 }
 
 export const setUsersDataActionCreator = (data: AuthDataType) => ({type: SETUSERDATA, data: data} as const)
+export const signInActionCreator = (userId: number) => ({type: SIGNIN, userId: userId} as const)
 
 export const setUserData = () => {
     return (dispatch: Dispatch<AuthActionsType>) => {
@@ -48,6 +51,19 @@ export const setUserData = () => {
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(setUsersDataActionCreator(data.data))
+                }
+            })
+    }
+}
+
+
+export const signIn = (email: string, password: string, rememberMe: boolean) => {
+    return (dispatch: Dispatch<AuthActionsType>) => {
+        authAPI.signIn(email, password, rememberMe)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    debugger
+                    dispatch(signInActionCreator(data.data.userId))
                 }
             })
     }
