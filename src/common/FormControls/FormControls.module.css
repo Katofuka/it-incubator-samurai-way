@@ -8,6 +8,13 @@
     resize: none;
 }
 
-.form .formError textarea{
-    border: 1px solid #f6007b;
+.form.formError textarea,
+.form.formError textarea:focus{
+    outline: none !important;
+    border: 2px solid #f6007b;
+}
+.form.formError input,
+.form.formError input:focus {
+    outline: none !important;
+    border-bottom: 2px solid #f6007b;
 }
