@@ -7,12 +7,12 @@
     grid-template-areas:
           "h h"
           "n c";
-
 }
 
 .appWrapperContent {
     grid-area: c;
     color: lightgray;
+    padding: 60px 0 0;
 }
 
 .blockBox {
@@ -26,9 +26,9 @@ button {
     padding: 12px 32px;
     border-radius: 4px;
     color: #fff;
-    background-color: #2d5be3;
+    background-color: #3f4257;
     transition: all .3s ease-in-out;
 }
 button:hover {
-    background-color: #34b7f1;
+    background-color: #8a8da9;
 }

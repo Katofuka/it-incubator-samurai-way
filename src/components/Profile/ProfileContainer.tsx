@@ -3,7 +3,6 @@ import style from "./Profile.module.css";
 import {Profile} from "./Profile";
 import {
     addPost,
-    changePost,
     setUserProfile,
     UserProfileType,
     getUserStatus,
@@ -39,8 +38,6 @@ class ProfileContainer extends React.Component<PropsType, any> {
         }
         this.props.setUserProfile(userId)
         this.props.getUserStatus(userId)
-
-
     }
     render() {
         return (
@@ -62,7 +59,7 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => (
 )
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {addPost, changePost, setUserProfile, getUserStatus, updateUserStatus}),
+    connect(mapStateToProps, {addPost, setUserProfile, getUserStatus, updateUserStatus}),
     withRouter,
     withAuthRedirect)(ProfileContainer)
 

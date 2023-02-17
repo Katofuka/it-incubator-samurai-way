@@ -2,13 +2,11 @@ import {Dispatch} from "redux";
 import {profileAPI} from "../api/api";
 
 const ADDPOST = 'ADD-POST';
-const CHANGEPOSTTEXT = 'CHANGE-POST-TEXT';
 const SETUSERPROFILE = 'SET-USER-PROFILE'
 const SETUSERSTATUS = 'SET-USER-STATUS'
 
 export type InitialProfileStateType = {
     postsData: PostsType[],
-    newPostText: string,
     profile: UserProfileType,
     status: string
 }
@@ -40,12 +38,10 @@ export type UserProfileType = {
 }
 
 export type AddPostActionType = ReturnType<typeof addPost>
-export type ChangePostActionType = ReturnType<typeof changePost>
 export type SetUserProfileActionCreatorType = ReturnType<typeof setUserProfileActionCreator>
 export type SetUserStatusActionCreatorType = ReturnType<typeof setUserStatusActionCreator>
 
 export type ProfileActionsType = AddPostActionType
-    | ChangePostActionType
     | SetUserProfileActionCreatorType
     | SetUserStatusActionCreatorType
 
@@ -57,7 +53,6 @@ const initialState: InitialProfileStateType = {
                 'et ex excepturi explicabo magnam maxime nobis, nostrum odit officiis optio quibusdam quisquam ' +
                 'tenetur totam vero voluptatem voluptatibus. Totam.', likesCount: 42},
     ] as Array<PostsType>,
-    newPostText: "",
     profile: {
         aboutMe: "",
         contacts: {
@@ -87,12 +82,10 @@ export const profileReducer = (state: InitialProfileStateType = initialState, ac
         case ADDPOST:
             let newPost: PostsType = {
                 id: new Date().getTime(),
-                post: state.newPostText,
+                post: action.newPostText,
                 likesCount: 0
             }
-            return {...state, postsData: [...state.postsData, newPost], newPostText: ''}
-        case CHANGEPOSTTEXT:
-            return {...state, newPostText: action.newText}
+            return {...state, postsData: [...state.postsData, newPost]}
         case SETUSERPROFILE:
             return {...state, profile: action.profile}
         case SETUSERSTATUS:
@@ -102,8 +95,7 @@ export const profileReducer = (state: InitialProfileStateType = initialState, ac
     }
 }
 
-export const addPost = () => ({type: ADDPOST} as const)
-export const changePost = (text: string) => ({type: CHANGEPOSTTEXT, newText: text} as const)
+export const addPost = (newPostText: string) => ({type: ADDPOST, newPostText} as const)
 export const setUserProfileActionCreator = (profile: UserProfileType) => ({type: SETUSERPROFILE, profile} as const)
 export const setUserStatusActionCreator = (status: string) => ({type: SETUSERSTATUS, status} as const)
 

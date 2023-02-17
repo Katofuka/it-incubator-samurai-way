@@ -1,5 +1,4 @@
 export type AddMessageActionType = ReturnType<typeof addMessageActionCreator>
-export type ChangeMessageActionType = ReturnType<typeof changeMessageActionCreator>
 
 export type DialogType = {
     id: number
@@ -14,7 +13,6 @@ export type MessageType = {
 export type InitialDialogStateType = typeof initialState
 
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const CHANGE_MESSAGE_TEXT = 'CHANGE-MESSAGE-TEXT';
 
 const  initialState = {
     messagesData: [
@@ -29,27 +27,24 @@ const  initialState = {
         {id: 3, name: 'Ksenia'},
         {id: 4, name: 'Alesha'},
     ]as Array<DialogType>,
-    newMessageText: ""
 }
 
 
-export type DialogsActionsType = AddMessageActionType | ChangeMessageActionType
+export type DialogsActionsType = AddMessageActionType
 export const dialogReducer = (state: InitialDialogStateType = initialState, action: DialogsActionsType):InitialDialogStateType => {
 
     switch (action.type) {
         case ADD_MESSAGE:
             const newMessage: MessageType = {
                 id: new Date().getTime(),
-                message: state.newMessageText
+                message: action.newMessageText
             }
             return {...state,
-                messagesData: [...state.messagesData, newMessage],
-                newMessageText: ''};
-        case CHANGE_MESSAGE_TEXT:
-            return {...state, newMessageText: action.newText};
+                messagesData: [...state.messagesData, newMessage]};
+
         default:
             return state;
     }
 }
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE} as const)
-export const changeMessageActionCreator = (text: string) => ({type: CHANGE_MESSAGE_TEXT, newText: text})
+export const addMessageActionCreator = (newMessageText: string) => ({type: ADD_MESSAGE, newMessageText: newMessageText} as const)
+

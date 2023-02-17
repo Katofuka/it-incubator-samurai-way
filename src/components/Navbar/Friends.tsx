@@ -1,11 +1,8 @@
 import style from "./Navbar.module.css";
-import React from "react";
+import React, {memo} from "react";
 
-type FriendsType = {
 
-}
-
-export const Friends = () => {
+export const Friends = memo(() => {
     return (
         <div className={style.friends}>
             <div className={style.friendMenu}>
@@ -22,4 +19,4 @@ export const Friends = () => {
             </div>
         </div>
     )
-}
+})

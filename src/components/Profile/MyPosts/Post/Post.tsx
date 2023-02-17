@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import style from "./Post.module.css";
 import defaultImage from "../../../../images/default-profile-image.svg"
 import styleApp from '../../../../App.module.css'
@@ -8,7 +8,7 @@ type PostType = {
     likesCount: number
 }
 
-export const Post: React.FC<PostType> = (props) => {
+export const Post: React.FC<PostType> = memo((props) => {
     return (
         <div className={`${style.post} ${styleApp.blockBox}`}>
             <div className={style.postHeader}>
@@ -32,4 +32,4 @@ export const Post: React.FC<PostType> = (props) => {
         </div>
 
     );
-};
+});

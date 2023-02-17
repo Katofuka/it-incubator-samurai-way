@@ -1,32 +1,74 @@
-.descriptionBlock {
-    padding: 10px;
+.profileBlock {
+    background-color: #3f4257;
+    padding: 180px 35px 35px 50px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
 }
 
-.profileName{
-    color: darkslateblue;
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.contact {
-    text-decoration: none;
-    margin: 0 10px;
-}
-
-.profilePhotoBlock {
+.profileBlock .profilePhotoBlock {
     position: relative;
-    text-align: center;
-    top: -35px;
-}
-
-.profilePhotoBlock .profilePhoto {
-    max-width: 200px;
-    max-height: 200px;
+    margin-right: 30px;
     border-radius: 50%;
-    border: 1px solid #3f4257;
+    display: inline-block;
+    width: 125px;
 }
 
-.contactsBlock {
-    text-align: right;
+.profileBlock .profilePhotoBlock:after {
+    content: url('../../../images/round_shape1.png');
+    position: absolute;
+    top: -9px;
+    left: -8px;
+}
+
+.profileBlock .profilePhotoBlock .profilePhoto {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.profileBlock .descriptionBlock {
+    position: relative;
+}
+
+.profileBlock .descriptionBlock .profileName {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-bottom: 2px;
+    position: relative;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.profileBlock .descriptionBlock .profileStatus {
+    font-size: 14px;
+    max-width: 550px;
+    line-height: 28px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.profileBlock .descriptionBlock .contactsBlock {
+    padding-left: 0;
+    display: inline-block;
+}
+
+.profileBlock .descriptionBlock .contactsBlock .contact {
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.profileBlock .descriptionBlock .contactsBlock .contact svg {
+    text-align: center;
+    font-size: 18px;
+    height: 20px;
+    width: 20px;
+    line-height: 35px;
+    border-radius: 50%;
+    transition: all .5s ease-in-out;
+}
+
+.profileBlock .descriptionBlock .contactsBlock .contact svg:hover {
+    fill: #fff;
 }

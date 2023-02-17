@@ -1,7 +1,7 @@
-import {AddPostActionType, ChangePostActionType} from "./profile-reducer";
-import {AddMessageActionType, ChangeMessageActionType} from "./dialog-reducer";
+import {AddPostActionType} from "./profile-reducer";
+import {AddMessageActionType} from "./dialog-reducer";
 
-type ActionType = AddPostActionType | ChangePostActionType | AddMessageActionType | ChangeMessageActionType
+type ActionType = AddPostActionType | AddMessageActionType
 
 export type StateType = {
     sidebar: object

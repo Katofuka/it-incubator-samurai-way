@@ -1,14 +1,22 @@
 .header {
     grid-area: h;
     background-color: #3f4257;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .header img {
     height: 60px;
+
 }
 
 .loginBlock {
     float: right;
+    margin-right: 40px;
+
 }
 
 .loginLink {

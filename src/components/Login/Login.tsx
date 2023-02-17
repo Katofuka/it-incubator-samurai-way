@@ -13,7 +13,7 @@ type MapDispatchPropsType = {
     signIn: (email: string, password: string, rememberMe: boolean) => void
 }
 
-export type FormDataType = {
+export type FormLoginDataType = {
     email: string
     password: string
     rememberMe: boolean
@@ -22,8 +22,8 @@ type AuthPropsType = MapStatePropsType & MapDispatchPropsType
 
 export const Login = (props: AuthPropsType) => {
 
-    const onSubmit = (formData: FormDataType) => {
-        console.log(formData)
+    const onSubmit = (formData: FormLoginDataType) => {
+
         props.signIn(formData.email, formData.password, formData.rememberMe)
         //создать апи для логинизации
         //самостоятельно залогиниться
@@ -39,7 +39,7 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => (
     {}
 )
 
-const LoginReduxFrom = reduxForm<FormDataType>({form: 'loginForm'})(LoginForm)
+const LoginReduxFrom = reduxForm<FormLoginDataType>({form: 'loginForm'})(LoginForm)
 //законнектить
 
 

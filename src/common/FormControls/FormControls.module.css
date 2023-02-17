@@ -1,0 +1,13 @@
+
+
+.form textarea {
+    padding: 0 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    resize: none;
+}
+
+.form .formError textarea{
+    border: 1px solid #f6007b;
+}

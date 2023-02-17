@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import style from './Header.module.css'
 import {NavLink} from "react-router-dom";
 
@@ -9,7 +9,7 @@ type HeaderPropsType = {
 }
 
 
-export const Header = (props: HeaderPropsType) => {
+export const Header = memo((props: HeaderPropsType) => {
     return (
         <header className={style.header}>
             <img alt='logo'
@@ -24,4 +24,4 @@ export const Header = (props: HeaderPropsType) => {
             </div>
         </header>
     );
-};
+});

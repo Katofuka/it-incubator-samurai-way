@@ -1,9 +1,9 @@
 import React from 'react'
 import {Field, InjectedFormProps} from 'redux-form'
-import {FormDataType} from "./Login";
+import {FormLoginDataType} from "./Login";
 import style from './Login.module.css'
 
-export const LoginForm = (props: InjectedFormProps<FormDataType>) => {
+export const LoginForm = (props: InjectedFormProps<FormLoginDataType>) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <h1>Sign In Your Account</h1>

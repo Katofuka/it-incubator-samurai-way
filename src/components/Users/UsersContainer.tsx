@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {AppRootStateType} from "../../Redux/redux-store";
 import {follow, getUsers, unfollow, UserType} from "../../Redux/users-reducer";
 import {Users} from "./Users";
-import {Preloader} from "../Preloader/Preloader";
+import {Preloader} from "../../common/Preloader/Preloader";
 
 type mapDispatchToPropsType = {
     follow: (userId: number) => void
