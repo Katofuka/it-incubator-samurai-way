@@ -15,12 +15,11 @@ type DialogStateType = {
     messagesData: Array<MessageType>
 }
 
-const mapStateToProps = (state: AppRootStateType): DialogStateType => {
-    return {
+const mapStateToProps = (state: AppRootStateType): DialogStateType =>  ({
         dialogsData: state.dialogReducer.dialogsData,
         messagesData: state.dialogReducer.messagesData,
     }
-}
+)
 const mapDispatchToProps = (dispatch:  Dispatch): mapDispatchToPropsType => {
     return {
         addMessage: (newMessageText: string)=> {

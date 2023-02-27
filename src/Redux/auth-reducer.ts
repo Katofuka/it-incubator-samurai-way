@@ -1,70 +1,83 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
+import {AppThunkType} from "./redux-store";
 
 export type SetUsersDataActionType = ReturnType<typeof setUsersDataActionCreator>
-export type SignInActionCreatorType = ReturnType<typeof signInActionCreator>
 
 export type AuthDataType = {
-    id: number
-    email: string
-    login: string
+    id: number | null
+    email: string | null
+    login: string | null
+}
+
+export type InitialAuthStateType = {
+    payload: AuthDataType,
+    isAuth: boolean
 }
 
 const initialState: InitialAuthStateType = {
-    data: {
-        id: 0,
-        email: "",
-        login: ""
+    payload: {
+        id: null,
+        email: null,
+        login: null,
     },
     isAuth: false
 }
 
-export type InitialAuthStateType = {
-    data: AuthDataType,
-    isAuth: boolean
-}
 
 const SETUSERDATA = 'SET-USER-DATA'
-const SIGNIN = 'SIGN-IN'
 
-export type AuthActionsType = SetUsersDataActionType | SignInActionCreatorType
+export type AuthActionsType = SetUsersDataActionType
 
 export const authReducer = (state: InitialAuthStateType = initialState, action: AuthActionsType): InitialAuthStateType => {
     switch (action.type) {
         case SETUSERDATA:
             return {
                 ...state,
-                data: {...action.data},
-                isAuth: true
+                payload: {
+                    id: action.payload.id,
+                    email: action.payload.email,
+                    login: action.payload.login,
+                },
+                isAuth: action.isAuth
             }
         default:
             return state
     }
 }
 
-export const setUsersDataActionCreator = (data: AuthDataType) => ({type: SETUSERDATA, data: data} as const)
-export const signInActionCreator = (userId: number) => ({type: SIGNIN, userId: userId} as const)
+export const setUsersDataActionCreator = (payload: AuthDataType, isAuth: boolean) =>
+    ({type: SETUSERDATA, payload, isAuth} as const)
 
 export const setUserData = () => {
-    return (dispatch: Dispatch<AuthActionsType>) => {
-        authAPI.authMe()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(setUsersDataActionCreator(data.data))
-                }
-            })
+    return async (dispatch: Dispatch<AuthActionsType>) => {
+        const data = await authAPI.authMe()
+        if (data.resultCode === 0) {
+             dispatch(setUsersDataActionCreator(data.data, true))
+        }
     }
 }
 
 
-export const signIn = (email: string, password: string, rememberMe: boolean) => {
-    return (dispatch: Dispatch<AuthActionsType>) => {
-        authAPI.signIn(email, password, rememberMe)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    debugger
-                    dispatch(signInActionCreator(data.data.userId))
-                }
-            })
+export const signIn = (
+    email: string,
+    password: string,
+    rememberMe: boolean
+):AppThunkType => {
+    return async (dispatch) => {
+        const data = await authAPI.signIn(email, password, rememberMe);
+        if (data.resultCode === 0) {
+            dispatch(setUserData())
+        }
     }
 }
+
+export const logout = ():AppThunkType => {
+    return async (dispatch) => {
+        const data = await authAPI.logout();
+        if (data.resultCode === 0) {
+            dispatch(setUsersDataActionCreator({id: null, login:null, email: null}, false))
+        }
+    }
+}
+

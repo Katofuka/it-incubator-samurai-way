@@ -51,7 +51,8 @@ export const profileAPI = {
 }
 
 export const authAPI = {
-    authMe: () => instance.get(`auth/me`).then(response => response.data),
+    authMe: () => instance.get(`auth/me`)
+        .then(response => response.data),
 
     signIn: (email: string, password: string, rememberMe: boolean) =>
         instance.post<ResponseType<{ userId: number }>>('auth/login', {
@@ -60,6 +61,15 @@ export const authAPI = {
             rememberMe: rememberMe,
             captcha: true
         })
-            .then(response => response.data)
+            .then(response => {
+                return response.data
+            }),
+
+    logout: () => instance.delete(`auth/login`)
+        .then(response =>  response.data)
+        .catch(err => {
+            console.log(err)
+            return err
+        })
 }
 
