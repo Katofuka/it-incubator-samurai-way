@@ -18,3 +18,7 @@
     outline: none !important;
     border-bottom: 2px solid #f6007b;
 }
+
+.commonError {
+    color: #f6007b;
+}

@@ -1,6 +1,7 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 import {AppThunkType} from "./redux-store";
+import {stopSubmit} from "redux-form";
 
 export type SetUsersDataActionType = ReturnType<typeof setUsersDataActionCreator>
 
@@ -49,35 +50,30 @@ export const authReducer = (state: InitialAuthStateType = initialState, action: 
 export const setUsersDataActionCreator = (payload: AuthDataType, isAuth: boolean) =>
     ({type: SETUSERDATA, payload, isAuth} as const)
 
-export const setUserData = () => {
-    return async (dispatch: Dispatch<AuthActionsType>) => {
-        const data = await authAPI.authMe()
-        if (data.resultCode === 0) {
-             dispatch(setUsersDataActionCreator(data.data, true))
-        }
+export const setUserData = () => async (dispatch: Dispatch<AuthActionsType>) => {
+    const data = await authAPI.authMe()
+    if (data.resultCode === 0) {
+        dispatch(setUsersDataActionCreator(data.data, true))
     }
 }
 
-
-export const signIn = (
-    email: string,
-    password: string,
-    rememberMe: boolean
-):AppThunkType => {
-    return async (dispatch) => {
+export const signIn = (email: string, password: string, rememberMe: boolean): AppThunkType =>
+    async (dispatch) => {
         const data = await authAPI.signIn(email, password, rememberMe);
         if (data.resultCode === 0) {
             dispatch(setUserData())
+        } else {
+            const errorMessage = data.messages.length > 0 ? data.messages[0] : 'Some error'
+            debugger
+            dispatch(stopSubmit("loginForm", {_error: errorMessage}))
         }
     }
-}
 
-export const logout = ():AppThunkType => {
-    return async (dispatch) => {
-        const data = await authAPI.logout();
-        if (data.resultCode === 0) {
-            dispatch(setUsersDataActionCreator({id: null, login:null, email: null}, false))
-        }
+export const logout = (): AppThunkType => async (dispatch) => {
+    const data = await authAPI.logout();
+    if (data.resultCode === 0) {
+        dispatch(setUsersDataActionCreator({id: null, login: null, email: null}, false))
     }
+
 }
 

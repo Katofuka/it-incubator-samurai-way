@@ -11,7 +11,6 @@ import {Redirect} from "react-router-dom";
 
 type MapDispatchPropsType = {
     signIn: (email: string, password: string, rememberMe: boolean) => void
-
 }
 
 type MapStateToPropsType = {

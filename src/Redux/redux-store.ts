@@ -6,7 +6,7 @@ import {UsersActionsType, usersReducer} from "./users-reducer";
 import {AuthActionsType, authReducer} from "./auth-reducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 
-import {reducer as formReducer} from 'redux-form'
+import {FormAction, reducer as formReducer} from 'redux-form'
 
 const rootReducer = combineReducers({
     profileReducer: profileReducer,
@@ -26,7 +26,7 @@ export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 // определить автоматически тип всего объекта состояния
 export type AppRootStateType = ReturnType<typeof rootReducer>
 
-export type AppThunkType <ReturnType = void> = ThunkAction<ReturnType, AppRootStateType, unknown, AppActionsType>
+export type AppThunkType <ReturnType = void> = ThunkAction<ReturnType, AppRootStateType, unknown, AppActionsType | FormAction>
 // а это, чтобы можно было в консоли браузера обращаться к store в любой момент
 // @ts-ignore - игнорирует типизацию
 window.store = store
