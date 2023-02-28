@@ -10,7 +10,8 @@ import {BrowserRouter} from "react-router-dom";
 //import {addMessage, addPost, changeMessageText, changePostText, state, StateType, subscribe} from "./Redux/state";
 
 
-let rerenderEntireTree = () => {
+const rerenderEntireTree = () => {
+
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>

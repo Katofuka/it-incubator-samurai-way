@@ -1,3 +1,9 @@
+.preloaderBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
 @keyframes ldio9pwzdoknglj {
     0% { transform: rotate(0deg) }

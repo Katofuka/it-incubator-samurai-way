@@ -50,7 +50,8 @@ export const authReducer = (state: InitialAuthStateType = initialState, action: 
 export const setUsersDataActionCreator = (payload: AuthDataType, isAuth: boolean) =>
     ({type: SETUSERDATA, payload, isAuth} as const)
 
-export const setUserData = () => async (dispatch: Dispatch<AuthActionsType>) => {
+export const getAuthUserData = () =>
+    async (dispatch: Dispatch<AuthActionsType>) => {
     const data = await authAPI.authMe()
     if (data.resultCode === 0) {
         dispatch(setUsersDataActionCreator(data.data, true))
@@ -61,10 +62,9 @@ export const signIn = (email: string, password: string, rememberMe: boolean): Ap
     async (dispatch) => {
         const data = await authAPI.signIn(email, password, rememberMe);
         if (data.resultCode === 0) {
-            dispatch(setUserData())
+            dispatch(getAuthUserData())
         } else {
             const errorMessage = data.messages.length > 0 ? data.messages[0] : 'Some error'
-            debugger
             dispatch(stopSubmit("loginForm", {_error: errorMessage}))
         }
     }

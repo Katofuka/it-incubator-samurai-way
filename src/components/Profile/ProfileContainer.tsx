@@ -1,24 +1,20 @@
 import React from "react";
 import style from "./Profile.module.css";
 import {Profile} from "./Profile";
-import {
-    addPost,
-    setUserProfile,
-    UserProfileType,
-    getUserStatus,
-    updateUserStatus
-} from "../../Redux/profile-reducer";
+import {addPost, getUserStatus, setUserProfile, updateUserStatus, UserProfileType} from "../../Redux/profile-reducer";
 import {AppRootStateType} from "../../Redux/redux-store";
 import {connect} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-import { compose } from "redux";
+import {compose} from "redux";
 
 type PathParamsType = { userId: string }
 
 type MapStatePropsType = {
     profile: UserProfileType
     status: string
+    myUserId: number | null
+    isAuth: boolean
 }
 type MapDispatchPropsType = {
     setUserProfile: (userId:string) => void
@@ -30,11 +26,10 @@ type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
 type ProfilePropsType = MapStatePropsType & MapDispatchPropsType
 
 class ProfileContainer extends React.Component<PropsType, any> {
-
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if (!userId) {
-            userId = "27415"
+        if (!userId && this.props.isAuth && this.props.myUserId) {
+            userId = this.props.myUserId.toString()
         }
         this.props.setUserProfile(userId)
         this.props.getUserStatus(userId)
@@ -54,15 +49,14 @@ class ProfileContainer extends React.Component<PropsType, any> {
 const mapStateToProps = (state: AppRootStateType): MapStatePropsType => (
     {
         profile: state.profileReducer.profile,
-        status: state.profileReducer.status
+        status: state.profileReducer.status,
+        myUserId: state.authReducer.payload.id ? state.authReducer.payload.id : null,
+        isAuth: state.authReducer.isAuth
     }
 )
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {addPost, setUserProfile, getUserStatus, updateUserStatus}),
     withRouter,
-    withAuthRedirect)(ProfileContainer)
-
-// const AuthRedirectComponent = withAuthRedirect(ProfileContainer)
-// const withURLDataContainerComponent = withRouter(AuthRedirectComponent)
-// export default connect(mapStateToProps, {addPost, changePost, setUserProfile})(withURLDataContainerComponent)
+    withAuthRedirect  //только при наличии авторизации пускает на эту страницу
+)(ProfileContainer)

@@ -1,7 +1,7 @@
 import React, {memo} from "react";
 import style from "./Navbar.module.css";
 import {NavLink} from "react-router-dom";
-import {HomeIcon, ListingIcon, MessagesIcon, ProfileIcon, SettingsIcon} from "../../icons/Icons";
+import {HomeIcon, MessagesIcon, ProfileIcon, SettingsIcon} from "../../icons/Icons";
 
 export const NavLinks = memo(() => {
     return (
@@ -16,15 +16,15 @@ export const NavLinks = memo(() => {
                     <MessagesIcon/>
                     Messages
                 </NavLink></div>
-            <div className={style.item}>
-                <NavLink to={'/news'} activeClassName={style.activeLink}>
-                    <ListingIcon/>
-                    News
-                </NavLink></div>
-            <div className={style.item}>
-                <NavLink to={'/music'} activeClassName={style.activeLink}>
-                    Music
-                </NavLink></div>
+            {/*<div className={style.item}>*/}
+            {/*    <NavLink to={'/news'} activeClassName={style.activeLink}>*/}
+            {/*        <ListingIcon/>*/}
+            {/*        News*/}
+            {/*    </NavLink></div>*/}
+            {/*<div className={style.item}>*/}
+            {/*    <NavLink to={'/music'} activeClassName={style.activeLink}>*/}
+            {/*        Music*/}
+            {/*    </NavLink></div>*/}
             <div className={style.item}>
                 <NavLink to={'/settings'} activeClassName={style.activeLink}>
                     <SettingsIcon/>

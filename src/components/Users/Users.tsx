@@ -3,6 +3,7 @@ import {UserType} from "../../Redux/users-reducer";
 import styles from './Users.module.css'
 import defaultUserPhoto from "../../common/images/default-avatar.jpg"
 import {NavLink} from "react-router-dom";
+import {Pagination} from "@mui/material";
 
 
 type UsersPropsType = {
@@ -18,20 +19,28 @@ type UsersPropsType = {
 
 export const Users = (props: UsersPropsType) => {
     const pagesCount = Math.ceil(props.totalCount / props.pageSize)
-    const pages: number[] = []
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
+    // const pages: number[] = []
+    // for (let i = 1; i <= pagesCount; i++) {
+    //     pages.push(i)
+    // }
     return <div>
-        <div>
-            {pages.map(page => {
-                return <span key={page} onClick={() => props.onPageChanged(page)}
-                             className={`${styles.numPage} ${props.currentPage === page ? styles.selectedPage : ''}`}>
-                        {page}
-                    </span>
-            })}
-
+        <div className={styles.paginationBlock}>
+            <Pagination
+                shape="rounded"
+                count={pagesCount}
+                page={props.currentPage}
+                onChange={(event, page) => props.onPageChanged(page)}/>
         </div>
+        {/*<div className={styles.paginationBlock}>*/}
+        {/*    <TablePagination*/}
+        {/*        component="div"*/}
+        {/*        count={pagesCount}*/}
+        {/*        page={props.currentPage}*/}
+        {/*        onPageChange={(event, page) => props.onPageChanged(page)}*/}
+        {/*        rowsPerPage={rowsPerPage}*/}
+        {/*        onRowsPerPageChange={handleChangeRowsPerPage}*/}
+        {/*    />*/}
+        {/*</div>*/}
         {
             props.items?.map(user => <div key={user.id}>
             <span>

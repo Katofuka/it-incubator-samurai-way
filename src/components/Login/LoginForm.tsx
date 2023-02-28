@@ -7,7 +7,6 @@ import {InputFormControls} from "../../common/FormControls/FormControls";
 import {email, minValue5, minValue8, required} from "../../utils/validators";
 
 export const LoginForm = (props: InjectedFormProps<FormLoginDataType>) => {
-    console.log(props)
     return (
         <form onSubmit={props.handleSubmit}>
             <h1>Sign In Your Account</h1>

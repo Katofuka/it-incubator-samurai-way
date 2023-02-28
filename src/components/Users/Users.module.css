@@ -18,3 +18,8 @@
     font-weight: bold;
     color: #b5d2c3;
 }
+
+.paginationBlock {
+   display: flex;
+    justify-content: center;
+}
