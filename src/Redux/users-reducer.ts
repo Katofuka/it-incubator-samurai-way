@@ -30,17 +30,17 @@ export type ToggleIsFetchingActionType = ReturnType<typeof toggleIsFetchingActio
 
 export type ToggleFollowingInProgressType = ReturnType<typeof toggleFollowingInProgressActionCreator>
 
+export type InitialUsersStateType = typeof initialState
+
+
 const initialState = {
     items: [] as UserType[],
-    pageSize: 25,
+    pageSize: 24,
     totalCount: 1,
     currentPage: 1,
     isFetching: false,
     followingInProgress: [] as number[],
 }
-
-export type InitialUsersStateType = typeof initialState
-
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -126,9 +126,10 @@ export const follow = (userId: number) => {
     }
 }
 
-export const getUsers = (pageSize: number, currentPage: number) => {
+export const requestUsers = (pageSize: number, currentPage: number) => {
     return (dispatch: Dispatch<UsersActionsType>) => {
         dispatch(toggleIsFetchingActionCreator(true))
+
         usersAPI.getUsers(pageSize, currentPage)
             .then(data => {
                 dispatch(setCurrentPageActionCreator(currentPage))

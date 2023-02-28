@@ -52,7 +52,7 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
                     <span title={'samurai status'}
                           className={style.statusSpan}
                           onDoubleClick={this.activateEditMode}>
-                        {this.props.status || 'samurai dont have status'}
+                        {this.props.status || 'samurai dont have a status'}
                     </span>
                 }
             </div>

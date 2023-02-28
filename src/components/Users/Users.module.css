@@ -1,8 +1,32 @@
+.usersPageBlock {
+    padding-left: 30px;
+    padding-right: 30px
+}
+
+.usersPageBlock .paginationBlock {
+    display: flex;
+    justify-content: center;
+}
+
+.usersPageBlock .usersListBlock {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.usersPageBlock .usersListBlock .userCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(63, 66, 87, 0.1);
+}
+
 .avatar{
     max-width: 100px;
     max-height: 100px;
     border-radius: 10px;
-
 }
 
 .getUsersButton {
@@ -19,7 +43,14 @@
     color: #b5d2c3;
 }
 
-.paginationBlock {
-   display: flex;
-    justify-content: center;
+.usersPageBlock .userCard .userName {
+    margin-bottom: 5px;
+    font-size: 18px;
+    color: #3f4257;
+    font-weight: bold;
+}
+
+.usersPageBlock .userCard .userStatus {
+    margin-bottom: 5px;
+    font-style: italic;
 }
