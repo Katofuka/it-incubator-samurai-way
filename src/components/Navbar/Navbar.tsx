@@ -6,7 +6,7 @@ import {NavLinks} from "./NavLinks";
 
 export const Navbar = memo(() => {
     return (
-        <div className={style.NavBar}>
+        <div className={style.navbar}>
             <NavLinks />
             <Friends/>
         </div>

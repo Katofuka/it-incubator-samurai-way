@@ -1,7 +1,13 @@
-.navBar {
+.navbar {
+    position: fixed;
+    z-index: 999;
+}
+
+.menu {
     grid-area: n;
     background-color: rgb(243, 243, 243);
     padding: 20px;
+    position: relative;
 }
 
 .item a{

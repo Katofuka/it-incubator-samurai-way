@@ -5,7 +5,7 @@ import {HomeIcon, MessagesIcon, ProfileIcon, SettingsIcon} from "../../icons/Ico
 
 export const NavLinks = memo(() => {
     return (
-        <nav className={style.navBar}>
+        <nav className={style.menu}>
             <div className={style.item}>
                 <NavLink to={'/profile'} activeClassName={style.activeLink}>
                     <HomeIcon/>
