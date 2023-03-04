@@ -4,10 +4,25 @@ import {Friends} from './Friends';
 import {NavLinks} from "./NavLinks";
 
 
-export const Navbar = memo(() => {
+type NavbarPropsType = {
+    isMenuOpen: boolean
+    changeCollapsedMenu: (isCollapsed: boolean) => void
+}
+
+export const Navbar: React.FC<NavbarPropsType> = memo((
+    {
+        isMenuOpen,
+        changeCollapsedMenu
+    }) => {
+
+    const toggleMenuOpen = () => {
+        changeCollapsedMenu(!isMenuOpen)
+    }
+
     return (
-        <div className={style.navbar}>
-            <NavLinks />
+        <div className={`${style.navbar} ${isMenuOpen ? '' : style.collapsed}`}>
+            <span onClick={toggleMenuOpen}>ToggleMenu</span>
+            <NavLinks/>
             <Friends/>
         </div>
     )

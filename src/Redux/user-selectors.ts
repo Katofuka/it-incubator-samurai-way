@@ -3,6 +3,7 @@ import { AppRootStateType } from "./redux-store"
 export const getUserItems = (state: AppRootStateType) => {
     return state.usersReducer.items
 }
+
 export const getPageSize = (state: AppRootStateType) => {
     return state.usersReducer.pageSize
 }

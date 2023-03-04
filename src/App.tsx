@@ -1,11 +1,11 @@
 import React from 'react';
-import {Navbar} from "./components/Navbar/Navbar";
 import {Route, withRouter} from 'react-router-dom';
 
 import {DialogContainer} from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import NavbarContainer from "./components/Navbar/NavbarContainer";
 import {LoginContainer} from "./components/Login/Login";
 import style from './App.module.css'
 import {connect} from "react-redux";
@@ -35,7 +35,7 @@ class App extends React.Component<AppPropsType, any> {
         if (this.props.isInitialized)
             return (<div className={style.appWrapper}>
                     <HeaderContainer/>
-                    <Navbar/>
+                    <NavbarContainer/>
                     <div className={style.appWrapperContent}>
 
                         <Route path='/profile/:userId?' render={() => {
